@@ -12,10 +12,23 @@ COPY dpkg-excludes /etc/dpkg/dpkg.cfg.d/
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get -q -y --no-install-recommends install \
     python3 \
+    python3-docutils \
+    python3-lxml \
+    python3-pathtools \
     python3-pip \
+    python3-pygments \
+    python3-setuptools \
+    python3-svg.path \
+    python3-watchdog \
+    python3-wheel \
+    python3-yaml \
     webfs \
  && apt-get clean \
  && find /var/lib/apt/lists /var/cache -type f -delete
+
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+
+RUN pip3 install hovercraft
 
 EXPOSE 4000
 
