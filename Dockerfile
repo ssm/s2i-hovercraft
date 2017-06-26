@@ -12,6 +12,7 @@ COPY dpkg-excludes /etc/dpkg/dpkg.cfg.d/
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get -q -y --no-install-recommends install \
     gettext-base \
+    libnss-wrapper \
     python3 \
     python3-docutils \
     python3-lxml \
