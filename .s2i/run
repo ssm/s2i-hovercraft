@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -u
+set -e
+
+echo " ---> Debug"
+pwd
+find . -ls
+
+echo " ---> Faking a password file"
+export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
+envsubst < "/srv/passwd.template" > /tmp/passwd
+export LD_PRELOAD=libnss_wrapper.so
+export NSS_WRAPPER_PASSWD=/tmp/passwd
+export NSS_WRAPPER_GROUP=/etc/group
+
+echo " ---> Starting web server"
+exec webfsd -F -r /srv/content -p 4000 -f index.html
