@@ -4,4 +4,4 @@ set -u
 set -e
 
 echo "---> Building static web site ..."
-hovercraft /tmp/src /srv/content
+hovercraft /tmp/src/presentation.rst /srv/content
